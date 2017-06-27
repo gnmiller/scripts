@@ -24,7 +24,7 @@ else:
     outfile = open( args.output, 'w+' )
 c = 0
 for i in range( lim ):
-    c += len( str( i ) )
+    c += len( str(i)+dlim )
     if( i == lim-1 ):
         outfile.write( str(i)+'\n' )
         break
