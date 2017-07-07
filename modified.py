@@ -34,7 +34,7 @@ date_str = date_str_t[0:10]
 
 # calling find binary
 if( b == True ):
-    res = call( ["find", path, "-type", "f", "! -newermt", date_str] )
+    res = call( ["find", path, "-type", "f", "!", "-newermt", date_str] )
     exit( 0 )
 if( b == False):
     res = call( ["find", path, "-type", "f", "-newermt", date_str] )
