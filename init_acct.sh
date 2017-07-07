@@ -1,4 +1,6 @@
 #!/bin/bash
+#initalize a Linux account with my bashrc, vimrc and my stock standard public key
+#ignores ssl checks on the remote servers additionally creates and chmod .ssh and authorized_keys as needed
 
 wget https://raw.githubusercontent.com/gnmiller/scraps/master/.bashrc --no-check-certificate
 wget https://raw.githubusercontent.com/gnmiller/scraps/master/.vimrc --no-check-certificate

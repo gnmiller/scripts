@@ -1,2 +1,4 @@
 #!/bin/sh
-$ for i in $(sudo grep "authentication failure" auth.log | awk -F'=' '{print $7}' | grep -Ev ^$ | awk '{print $1}' | sort | uniq | sort); do sudo ufw deny from $i/24; done;
+#blacklist IPs found /var/log/auth.log that have failed to authenticate
+#uses ufw firewall
+for i in $(sudo grep "authentication failure" auth.log | awk -F'=' '{print $8}' | grep -Ev ^$ | awk '{print $1}' | sort | uniq | sort); do sudo ufw deny from $i/24; done;
