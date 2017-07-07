@@ -37,7 +37,7 @@ if( b == True ):
     res = call( ["find", path, "-type", "f", "! -newermt", date_str] )
     exit( 0 )
 if( b == False):
-    res = call( ["find", "-type", "f", path, "-newermt", date_str] )
+    res = call( ["find", path, "-type", "f", "-newermt", date_str] )
     exit( 0 )
 if( b == None ):
     # date -> date+1day and formatting
