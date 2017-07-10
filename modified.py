@@ -23,7 +23,7 @@ if( args.a == True):
 # check if path was provided
 path = None
 if( args.d != None ):
-    path = args.b
+    path = args.d[0]
 else:
     path = "."
 
@@ -34,15 +34,15 @@ date_str = date_str_t[0:10]
 
 # calling find binary
 if( b == True ):
-    res = call( ["find", path, "-type", "f", "!", "-newermt", date_str] )
+    res = call( ["find", "-L", path, "-type", "f", "!", "-newermt", date_str] )
     exit( 0 )
 if( b == False):
-    res = call( ["find", path, "-type", "f", "-newermt", date_str] )
+    res = call( ["find", "-L", path, "-type", "f", "-newermt", date_str] )
     exit( 0 )
 if( b == None ):
     # date -> date+1day and formatting
     next_day = date + timedelta(days=1)
     next_day_str_t = str(next_day)
     next_day_str = next_day_str_t[0:10]
-    res = call( ["find", path, "-type", "f", "-newermt", date_str, "!", "-newermt", next_day_str] )
+    res = call( ["find", "-L", path, "-type", "f", "-newermt", date_str, "!", "-newermt", next_day_str] )
     exit( 0 )
