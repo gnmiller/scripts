@@ -2,8 +2,10 @@
 import argparse
 from subprocess import call
 from datetime import datetime
+from datetime import date
 from datetime import timedelta
 from dateutil.parser import parse
+from os import expanduser
 
 parser = argparse.ArgumentParser( description="Uses the system binary find to locate files modified on, before or after a given date. The application will attempt to parse any valid date-string and perform the find for it.\nThe default behavior is to search for files modified on date. The search ignores directories and will only return files.\nNOTE: If is modified at exactly 00:00 on a given date it will NOT be returned in results for that date." )
 parser.add_argument( "date", action="store", nargs=1, help="The date to compare modify times against." )
@@ -20,15 +22,27 @@ if( args.b == True ):
 if( args.a == True):
     b = False
 
+import pdb
+pdb.set_trace()
 # check if path was provided
 path = None
 if( args.d != None ):
     path = args.d[0]
 else:
     path = "."
+if( path.contains( "~" ) ):
+    path.replace( "~", os.expanduser( "~" ) )
 
 # format date into YYYY-MM-DD
-date = parse(args.date[0])
+if( args.date[0].lower() == 'today' ):
+    date = date.today()
+elif( args.date[0].lower() == 'tomorrow' ):
+    date = (date.today() + timedelta(days=1))
+elif( args.date[0].lower() == 'yesterday' ):
+    date = (date.today() - timedelta(days=1))
+else:
+    date = parse(args.date[0])
+
 date_str_t = str(date)
 date_str = date_str_t[0:10]
 
