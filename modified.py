@@ -5,7 +5,7 @@ from datetime import datetime
 from datetime import date
 from datetime import timedelta
 from dateutil.parser import parse
-from os import expanduser
+import os
 
 parser = argparse.ArgumentParser( description="Uses the system binary find to locate files modified on, before or after a given date. The application will attempt to parse any valid date-string and perform the find for it.\nThe default behavior is to search for files modified on date. The search ignores directories and will only return files.\nNOTE: If is modified at exactly 00:00 on a given date it will NOT be returned in results for that date." )
 parser.add_argument( "date", action="store", nargs=1, help="The date to compare modify times against." )
@@ -30,8 +30,8 @@ if( args.d != None ):
     path = args.d[0]
 else:
     path = "."
-if( path.contains( "~" ) ):
-    path.replace( "~", os.expanduser( "~" ) )
+if( "~" in path ):
+    path = path.replace( "~", os.getenv( "HOME" ) )
 
 # format date into YYYY-MM-DD
 if( args.date[0].lower() == 'today' ):
