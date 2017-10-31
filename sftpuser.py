@@ -54,8 +54,15 @@ else:
     # chown to DMS:user and set perms
     if args.ftp == True:
         print( "Attempting to set user as FTP user..." )
-        os.system( "sudo mkdir -p " + "/home/DMS/" + name + "/" + name +"/" )
-        chown_str="sudo chown "+name+":sftp /home/DMS/"+name+" -R"
-        os.system( chown_str )
-        os.system( "sudo chmod 755 /home/DMS/"+name+" -R" )
+        # mkdir -p /home/DMS/user/upload
+        os.system( "sudo mkdir -p /home/DMS/{0}/upload/".format( name ) )
+        # chwon root:DMS /home/DMS/user -R
+        ch_str = "sudo chown root:DMS /home/DMS/{0} -R".format( name )
+        os.system( ch_str )
+        # chown user:DMS /home/DMS/user/upload
+        # chmod 755 /home/DMS/user -- chroot jail ...
+        ch_str = "sudo chown {0}:DMS /home/DMS/{0}/upload/".format( name )
+        os.system( "sudo chmod 755 /home/DMS/{0}".format( name ) )
+        ch_str = "sudo chmod 775 /home/DMS/{0}/* -R".format( name ) )
+        os.system( ch_str )
     sys.exit(0)
