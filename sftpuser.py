@@ -50,11 +50,12 @@ if i.lower() == 'n':
 else:
     e_passwd = crypt.crypt(passwd,"54")
     #print(  "useradd -p " + e_passwd + " -s " + shell + " -d " + home + " -m " + name )
-    os.system( "sudo useradd -p " + e_passwd + " -s " + shell + " -d " + home + " -m -g sftp " + name )
+    os.system( "sudo useradd -p " + e_passwd + " -s " + shell + " -d " + home + " -m -G sftp " + name )
     # chown to DMS:user and set perms
     if args.ftp == True:
         print( "Attempting to set user as FTP user..." )
         os.system( "sudo mkdir -p " + "/home/DMS/" + name + "/" + name +"/" )
-        os.system( "sudo chown " + name + ":sftp /home/DMS/"+name+" -R" )
+        chown_str="sudo chown "+name+":sftp /home/DMS/"+name+" -R"
+        os.system( chown_str )
         os.system( "sudo chmod 755 /home/DMS/"+name+" -R" )
     sys.exit(0)
