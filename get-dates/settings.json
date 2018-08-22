@@ -1,0 +1,14 @@
+{
+    "twitter":
+    {
+        "consumer_key":"jDadV8Buzsf6NDPYqfIW6OP88",
+        "consumer_secret":"gSWxYPOJyOV99IWoRWBKI8vHofhqs6mactEktObNfyAfYHGtPX",
+        "access_token":"4689463646-NesLX1dPwmSoE72abdtwy32J3lqxj8adRGfyKyu",
+        "access_token_secret":"xanwmcfRSn4Xj09UPweuGiyqz48HuCn7LwaVycnNiQgGV"
+    },
+    "app":
+    {
+        "user":"drdisrespect",
+        "tz":"America/Detroit"
+    }
+}
